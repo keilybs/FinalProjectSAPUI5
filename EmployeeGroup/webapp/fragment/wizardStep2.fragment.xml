@@ -1,0 +1,44 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:form="sap.ui.layout.form">
+    <WizardStep id="dataEmployeeStep" validated="false" title="{i18n>stepDataEmployee}" complete="_completedStep2">
+        <MessageStrip class="sapUiSmallMarginBottom" 
+                      text="{i18n>infoWizardStep2}" 
+                      showIcon="true"/>
+        <form:SimpleForm editable="true">
+            <Label text="{i18n>name}" required="true"/>
+            <Input id="FirstName" valueState="{Employee>/FirstNameState}"  
+                   value="{Employee>/FirstName}" change="onChangeField"/>
+
+            <Label text="{i18n>lastName}" required="true"/>
+            <Input id="LastName" valueState="{Employee>/LastNameState}" 
+                   value="{Employee>/LastName}" change="onChangeField" />
+
+            <Label text="{i18n>DNI}" required="true"  />
+            <Input id="DNI" valueState="{Employee>/DNIState}" change="onChangeField"  
+                   visible="{= ${Employee>/EmployeeType} !== 'A' }" value="{Employee>/DNI}" />
+
+            <Label text="{i18n>CIF}" required="true" />
+            <Input id="CIF" valueState="{Employee>/CIFState}" change="onChangeField" 
+                   visible="{= ${Employee>/EmployeeType} === 'A' }" value="{Employee>/CIF}"/>
+
+            <Label text="{i18n>grossSalary}" />
+            <Slider visible="{= ${Employee>/EmployeeType} !== 'A' }" showAdvancedTooltip="true" enableTickmarks="true" 
+                         min="{= ${Employee>/EmployeeType} === 'I' ? parseInt('12000') : parseInt('50000') }" 
+                         max="{= ${Employee>/EmployeeType} === 'I' ? parseInt('80000') : parseInt('200000') }"
+                         step="1000" 
+                         class="sapUiLargeMarginBottom" 
+                         value="{Employee>/GrossSalary}"/>
+
+            <Label text="{i18n>dailyPrice}" />
+            <Slider showAdvancedTooltip="true" enableTickmarks="true" min="100" max="2000" step="100" 
+                         class="sapUiLargeMarginBottom" visible="{= ${Employee>/EmployeeType} === 'A' }"
+                         value="{Employee>/DailyPrice}"/>
+                         
+            <Label text="{i18n>incorporationDate}" required="true"/>
+            <DatePicker id="DateInc" class="sapUiLargeMarginBottom" change="_dateValidation"
+                dateValue="{path:'Employee>/DateInc', formatOptions: { style: 'medium' }}"
+                valueState="{Employee>/DateIncState}" />
+        </form:SimpleForm>
+    </WizardStep>
+</core:FragmentDefinition>          

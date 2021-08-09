@@ -1,0 +1,56 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:form="sap.ui.layout.form">
+
+    <form:SimpleForm title="1. {i18n>stepTypeEmployee}" editable="false" layout="ResponsiveGridLayout">
+        <form:content>
+            <Label text="{i18n>type}"/>
+            <Text  text="{Employee>/EmployeeTypeText}"/>
+            <Link press="editStepOne" text="Edit" />
+        </form:content>
+    </form:SimpleForm>
+ 
+    <form:SimpleForm title="2. {i18n>stepDataEmployee}" editable="false" layout="ResponsiveGridLayout">
+        <form:content>
+            <Label text="{i18n>name}"/>
+            <Text  text="{Employee>/FirstName}"/>
+            <Label text="{i18n>lastName}"/>
+            <Text  text="{Employee>/LastName}"/>
+            <Label text="{i18n>DNI}"/>
+            <Text  text="{Employee>/DNI}" visible="{= ${Employee>/EmployeeType} !== 'A' }"/>
+            <Label text="{i18n>CIF}"/>
+            <Text  text="{Employee>/CIF}" visible="{= ${Employee>/EmployeeType} === 'A' }"/>
+            <Label text="{i18n>grossSalary}"/>
+            <Text  text="{Employee>/GrossSalary}" visible="{= ${Employee>/EmployeeType} !== 'A' }"/>
+            <Label text="{i18n>dailyPrice}"/>
+            <Text  text="{Employee>/DailyPrice}" visible="{= ${Employee>/EmployeeType} === 'A' }"/>
+            <Label text="{i18n>incorporationDate}"/>
+            <Text  text="{  path : 'Employee>/DateInc',
+                            type : 'sap.ui.model.type.Date',
+                            formatOptions: {
+                                style : 'medium'
+                        } }"/>             
+            <Link press="editStepTwo" text="Edit" />
+        </form:content>
+    </form:SimpleForm>
+
+    <form:SimpleForm title="3. {i18n>stepInfoEmployee}"  editable="false" layout="ResponsiveGridLayout">
+        <form:content >
+            <Label text="{i18n>comments}"/>
+            <Text  text="{Employee>/Comments}"/>
+            <Label text="{i18n>documents}"/>
+            <Text  text="{Employee>/Quantity} {i18n>files}"/>
+
+            <Label/>
+            <List items="{Employee>/Attachments}">
+                <items>
+                    <StandardListItem title="{Employee>fileName}" />
+                </items>
+            </List>  
+
+            <Link press="editStepThree" text="Edit" />
+        </form:content>  
+         
+    </form:SimpleForm>
+
+</core:FragmentDefinition>                    

@@ -24,7 +24,12 @@ sap.ui.define([
 			this.getRouter().initialize();
 
 			// set the device model
-			this.setModel(models.createDeviceModel(), "device");
-		}
+            this.setModel(models.createDeviceModel(), "device");
+            
+            //pruebaaa KB-01
+            sap.ui.getCore().getConfiguration().setLanguage( "es" )
+
+        },
+        SapId: "keily.bustos@softtek.com"
 	});
 });

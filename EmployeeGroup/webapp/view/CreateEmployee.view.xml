@@ -1,0 +1,42 @@
+<mvc:View xmlns:cards="sap.f.cards"
+		height="100%"
+		controllerName="logali.EmployeeGroup.controller.CreateEmployee"
+		xmlns:core="sap.ui.core"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns="sap.m">
+		<NavContainer id="wizardNavContainer" >
+			<pages>
+				<Page id="wizardContentPage" title="{i18n>titleCreateEmployee}">
+					<content>
+						<Wizard id="CreateProductWizard" class="sapUiResponsivePadding--header sapUiResponsivePadding--content"
+								complete="wizardCompletedHandler">
+                            <core:Fragment fragmentName="logali.EmployeeGroup.fragment.wizardStep1" type="XML"/>
+                            <core:Fragment fragmentName="logali.EmployeeGroup.fragment.wizardStep2" type="XML"/>   
+                            <core:Fragment fragmentName="logali.EmployeeGroup.fragment.wizardStep3" type="XML"/>  
+						</Wizard>
+					</content>
+					<footer>
+						<OverflowToolbar>
+							<ToolbarSpacer/>
+							<Button text="{i18n>cancel}" press="cancelCreateEmployee"/>
+						</OverflowToolbar>
+					</footer>
+				</Page>
+                <Page id="wizardReviewPage" title="{i18n>summary}">
+                <headerContent > 
+                </headerContent>
+                    <content>
+                       <core:Fragment id="review" fragmentName="logali.EmployeeGroup.fragment.wizardReview" type="XML"/>
+                    </content>
+                    <footer>
+                        <Bar>
+                            <contentRight>
+                                <Button text="{i18n>save}" press="_saveEmployee"/>
+                                <Button text="{i18n>cancel}" press="cancelCreateEmployee"/>
+                            </contentRight>
+                        </Bar>
+                    </footer>
+                </Page>
+            </pages>
+		</NavContainer>
+</mvc:View>

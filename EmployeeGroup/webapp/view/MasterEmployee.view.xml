@@ -1,0 +1,23 @@
+<mvc:View controllerName="logali.EmployeeGroup.controller.MasterEmployee" 
+          xmlns:mvc="sap.ui.core.mvc" 
+          displayBlock="true" 
+          xmlns="sap.m"
+          xmlns:core="sap.ui.core">
+	<Page id="page">
+		<subHeader>
+			<OverflowToolbar>
+				<SearchField search="onSearch" width="100%" />
+			</OverflowToolbar>
+		</subHeader>
+		<List
+			id="UserList"
+			items="{/Users}"
+			growing="true"
+			growingThreshold="50"
+			includeItemInSelection="true" >
+			<StandardListItem type="Navigation"
+				title="{FirstName} {LastName}"
+				description="{Dni}" 	 />
+		</List>
+	</Page>		
+</mvc:View>

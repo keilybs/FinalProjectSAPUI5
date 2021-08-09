@@ -1,0 +1,23 @@
+sap.ui.define([
+    "sap/ui/core/mvc/Controller"
+],
+	/**
+     * @param {typeof sap.ui.core.mvc.Controller} Controller
+     */
+    function (Controller) {
+        "use strict";
+
+        return Controller.extend("logali.EmployeeGroup.controller.Main", {
+            onInit: function () {
+
+            },
+            onPressTileCreateEmployee: function () {
+                var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+                oRouter.navTo("RouteCreateEmployee", {});
+            },
+            onPressTileListEmployee: function () {
+                var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+                oRouter.navTo("RouteListEmployee", {});
+            }            
+        });
+    });

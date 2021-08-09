@@ -1,0 +1,16 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+    xmlns="sap.m">
+    <WizardStep id="typeEmployeeStep" title="{i18n>stepTypeEmployee}" validated="false">
+        <MessageStrip class="sapUiSmallMarginBottom" text="{i18n>infoWizardStep1}" showIcon="true"/>
+        <HBox alignItems="Center" justifyContent="Center" width="100%" >
+            <Button text="{i18n>interno}"  class="sapUiSmallMarginEnd" press="_onPressEmployeeType"/>
+            <Button text="{i18n>autonomo}" class="sapUiSmallMarginEnd" press="_onPressEmployeeType"/>
+            <Button text="{i18n>gerente}" press="_onPressEmployeeType"/>
+        </HBox>
+        <ToolbarSpacer ></ToolbarSpacer>
+        <ToolbarSpacer ></ToolbarSpacer>
+        <ToolbarSpacer ></ToolbarSpacer>
+        <ToolbarSpacer ></ToolbarSpacer>
+        <ToolbarSpacer ></ToolbarSpacer>
+    </WizardStep>
+</core:FragmentDefinition>                            
