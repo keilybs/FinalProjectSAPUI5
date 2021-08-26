@@ -1,0 +1,29 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form">
+    <Dialog id="promoteDialog" title="{i18n>newPromote}" resizable="true">
+        <content>
+            <VBox class="sapUiContentPadding" width="100%">
+                <f:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="1" singleContainerFullSize="false">
+                    <f:content>
+                        <Label text="{i18n>Salary}" required="true"/>
+                        <Input valueState="{Employee>/stateSalary}" value="{Employee>/Salary}" change="onChangeField" type="Number"/>
+
+                        <Label text="{i18n>incorporationDate}" required="true"/>
+                        <DatePicker id="DateInc" class="sapUiLargeMarginBottom" dateValue="{path:'Employee>/DateInc', 
+                                        formatOptions: { style: 'medium' }}" valueState="{Employee>/DateIncState}" />
+                        <Label text="{i18n>comments}"/>
+                        <TextArea id="textAreaComments" value="{Employee>/Comments}" growing="true" width="100%" growingMaxLines="10" class=".icon-user" />
+
+                    </f:content>
+                </f:SimpleForm>
+            </VBox>
+        </content>
+        <beginButton>
+            <Button text="{i18n>accept}" press="promoteEmployee"/>
+        </beginButton>
+        <endButton>
+            <Button text="{i18n>cancel}" press="onCloseDialog"/>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

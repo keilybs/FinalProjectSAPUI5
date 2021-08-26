@@ -1,7 +1,7 @@
 sap.ui.define([
 	"sap/ui/core/UIComponent",
 	"sap/ui/Device",
-	"logali/EmployeeGroup/model/models"
+    "logali/EmployeeGroup/model/models"
 ], function (UIComponent, Device, models) {
 	"use strict";
 
@@ -26,10 +26,10 @@ sap.ui.define([
 			// set the device model
             this.setModel(models.createDeviceModel(), "device");
             
-            //pruebaaa KB-01
+            //cambio de idioma
             sap.ui.getCore().getConfiguration().setLanguage( "es" )
 
-        },
+        },      
         SapId: "keily.bustos@softtek.com"
 	});
 });

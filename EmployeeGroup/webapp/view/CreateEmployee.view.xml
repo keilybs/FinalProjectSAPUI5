@@ -22,16 +22,14 @@
 						</OverflowToolbar>
 					</footer>
 				</Page>
-                <Page id="wizardReviewPage" title="{i18n>summary}">
-                <headerContent > 
-                </headerContent>
+                <Page id="wizardReviewPage" title="{i18n>titleCreateEmployee}">
                     <content>
                        <core:Fragment id="review" fragmentName="logali.EmployeeGroup.fragment.wizardReview" type="XML"/>
                     </content>
                     <footer>
                         <Bar>
                             <contentRight>
-                                <Button text="{i18n>save}" press="_saveEmployee"/>
+                                <Button text="{i18n>save}" press="saveEmployee"/>
                                 <Button text="{i18n>cancel}" press="cancelCreateEmployee"/>
                             </contentRight>
                         </Bar>

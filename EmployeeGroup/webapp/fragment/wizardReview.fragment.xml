@@ -1,7 +1,7 @@
 <core:FragmentDefinition xmlns:core="sap.ui.core"
     xmlns="sap.m"
     xmlns:form="sap.ui.layout.form">
-
+    <Page title="{i18n>summary}">
     <form:SimpleForm title="1. {i18n>stepTypeEmployee}" editable="false" layout="ResponsiveGridLayout">
         <form:content>
             <Label text="{i18n>type}"/>
@@ -52,5 +52,5 @@
         </form:content>  
          
     </form:SimpleForm>
-
+</Page>
 </core:FragmentDefinition>                    

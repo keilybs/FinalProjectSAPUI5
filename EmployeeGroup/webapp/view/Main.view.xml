@@ -16,7 +16,7 @@
                 </content>
             </Panel>
             <Panel expandable="true" expanded="true" backgroundDesign="Transparent" headerText="{i18n>titleOrders}">
-                <GenericTile headerImage="sap-icon://signature" press="press">
+                <GenericTile headerImage="sap-icon://signature" id="tileSignOrder"  >
                     <TileContent footer="{i18n>titleSignOrder}"/>
                 </GenericTile>
             </Panel>

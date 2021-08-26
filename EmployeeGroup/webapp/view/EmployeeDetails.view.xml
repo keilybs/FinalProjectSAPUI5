@@ -1,8 +1,84 @@
-<mvc:View controllerName="logali.EmployeeGroup.controller.EmployeeDetails" 
-          xmlns:mvc="sap.ui.core.mvc" 
-          displayBlock="true" 
-          xmlns="sap.m"
-          xmlns:core="sap.ui.core">
-	<Page id="page" title="{i18n>title}">
-	</Page>		
+<mvc:View controllerName="logali.EmployeeGroup.controller.EmployeeDetails"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:commons="sap.suite.ui.commons">
+    <Page id="pageEmployeeDetails" title="{i18n>employeeDetail}" showHeader="false" visible="false">
+        <ObjectHeader id="objHeaderEmployeeDetail" responsive="true" 
+                      fullScreenOptimized="false"
+                      icon="{= ${Type} === '0' ? 'sap-icon://employee-pane' :  
+                               ${Type} === '1' ? 'sap-icon://employee' : 'sap-icon://leads' }"  
+                      title="{FirstName} {LastName}" 
+                      intro="{Dni}" backgroundDesign="Solid">
+
+            <ObjectAttribute title="Fecha" text="{  path : 'CreationDate',
+                                                    type : 'sap.ui.model.type.Date',
+                                                    formatOptions: {
+                                                        style : 'medium'
+                                                    } }"/>
+            <ObjectAttribute title="Tipo" text="{= ${Type} === '0' ? ${i18n>interno} :  
+                                                   ${Type} === '1' ? ${i18n>autonomo} : 
+                                                   ${i18n>gerente}
+                                                }"/>
+            <statuses>
+                <ObjectStatus title="Comentarios" text="{Comments}"/>
+            </statuses>
+            <headerContainer>
+                <IconTabBar upperCase="true" class="sapUiResponsiveContentPadding">
+                    <items>
+                        <IconTabFilter icon="sap-icon://attachment" text="Ficheros" design="Horizontal" count="{/UserToAttachment/$count}">
+                            <UploadCollection id="uploadCollection"
+                             maximumFilenameLength="80" 
+                             maximumFileSize="10" 
+                             multiple="true"
+                             sameFilenameAllowed="true" 
+                             instantUpload="true" 
+                             uploadUrl="/sap/opu/odata/sap/ZEMPLOYEES_SRV/Attachments"
+                             change="onFileChange"
+                             uploadComplete="onFileUploadComplete"
+                             beforeUploadStarts="onFileBeforeUpload"
+                             fileDeleted="onFileDeleted"/>
+                        </IconTabFilter>
+                        <IconTabFilter icon="sap-icon://money-bills" text="Historial" design="Horizontal">
+                            <commons:Timeline
+                                id="idTimeline"
+                                enableDoubleSided="false"
+                                alignment="Left"
+                                showHeaderBar="false"
+                                showItemFilter="false"
+                                enableScroll="false"
+                                groupByType="Year"
+								groupBy="CreationDate"
+                                content="{UserToSalary}">
+                                <commons:content>
+                                    <commons:TimelineItem
+                                        id="idTemplateItem"
+                                        icon="sap-icon://circle-task"
+                                        dateTime="{CreationDate}"
+                                        userName="{Ammount}"
+                                        text="{Comments}">
+                                    </commons:TimelineItem>
+                                </commons:content>
+                            </commons:Timeline>
+                        </IconTabFilter>
+                    </items>
+                </IconTabBar>
+            </headerContainer>          
+        </ObjectHeader>
+        <footer>
+        <Bar>
+            <contentRight>
+                <Button text="{i18n>fired}" press="onPressFiredEmployee" />
+                <Button text="{i18n>promote}" press="onPressPromote"/>
+            </contentRight>
+        </Bar>
+        </footer>         
+    </Page>
+    <Page id="whitePage" showHeader="false">
+         <FlexBox alignItems="Center" justifyContent="Center" height="700px">
+            <items>
+                <Text text="{i18n>selectEmployee}" ></Text>
+            </items>
+        </FlexBox>   
+    </Page>
 </mvc:View>
