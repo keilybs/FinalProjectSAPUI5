@@ -1,6 +1,12 @@
 /* Enter your custom styles here */
 
 .iconText {
-         position: relative;
-         margin-left: 1200px;
+    position: absolute;
+    right: -5px;
+    top: 25px;
+}
+.iconText2 {
+    position: absolute;
+    right: -5px;
+    top: 25px;
 }

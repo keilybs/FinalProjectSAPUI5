@@ -4,10 +4,14 @@
     <Dialog id="promoteDialog" title="{i18n>newPromote}" resizable="true">
         <content>
             <VBox class="sapUiContentPadding" width="100%">
-                <f:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="1" singleContainerFullSize="false">
+                <f:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4"
+                             labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" 
+                             emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" 
+                             columnsM="1" singleContainerFullSize="false">
                     <f:content>
-                        <Label text="{i18n>Salary}" required="true"/>
-                        <Input valueState="{Employee>/stateSalary}" value="{Employee>/Salary}" change="onChangeField" type="Number"/>
+                        <Label text="{i18n>salary}" required="true"/>
+                        <Input valueState="{Employee>/stateSalary}" value="{Employee>/Salary}" change="onChangeField" 
+                                type="Number"/>
 
                         <Label text="{i18n>incorporationDate}" required="true"/>
                         <DatePicker id="DateInc" class="sapUiLargeMarginBottom" dateValue="{path:'Employee>/DateInc', 

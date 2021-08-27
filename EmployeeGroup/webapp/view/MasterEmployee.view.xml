@@ -12,7 +12,9 @@
 		
 		<List 
 			id="UserList"
-			items="{/Users}"
+			items="{path:'/Users',
+                    filters:[{path:'SapId',operator:'EQ',value1:'keily.bustos@softtek.com'}]
+                   }"
 			growing="true"
 			growingThreshold="50"
 			includeItemInSelection="true">

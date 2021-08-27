@@ -21,6 +21,8 @@ sap.ui.define([
 
                 this._bus.subscribe("flexible", "showEmployee", this.showEmployeeDetails, this);
             },
+            //evento que se dispara desde el MasterEmployee al hacer clic en un item de la lista
+            //hace el binding de la vista EmployeeDetails
             showEmployeeDetails: function (category, nameEvent, path) {
 
                 var detailView = this.getView().byId("detailEmployeeView");
@@ -43,21 +45,7 @@ sap.ui.define([
                 
 
             },
-            onReadODataIncidence: function (employeeID) {
-
-                this.getView().getModel().read("/Users", {
-                    filters: [
-                        new sap.ui.model.Filter("EmployeeId", "EQ", employeeID.toString()),
-                        new sap.ui.model.Filter("SapId", "EQ", this.getOwnerComponent().SapId)
-                    ],
-                    success: function (data) {
-                        var incidenceModel = this._detailEmployeeView.getModel();
-                        incidenceModel.setData(data.results);
-                    }.bind(this),
-                    error: function (e) {
-                    }
-                });
-            },
+            //evento que descarga el archivo de forma local
             downloadFile : function(oEvent) {
                 const sPath = oEvent.getSource().getBindingContext().getPath();
                 window.open("/sap/opu/odata/sap/ZEMPLOYEES_SRV" + sPath + "/$value","file");

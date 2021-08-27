@@ -17,6 +17,7 @@ sap.ui.define([
                  this._bus = sap.ui.getCore().getEventBus();
                  this._bus.subscribe("flexible", "refreshEmployees", this.refreshEmployees, this);
             },
+            //evento submit del search, buscar por nombre o apellido en la lista
             onSearch: function (oEvent) {
                 var aFilter = [],
                     sQuery = oEvent.getParameter("query"),
@@ -34,47 +35,21 @@ sap.ui.define([
                 });                
                 userList.getBinding("items").filter(ofinalFilter, "Application");
             },
+            //al hacer clic sobre un item de la lista...
             showEmployee: function (oEvent) {
                 var path = oEvent.getSource().getBindingContextPath();
                 this._bus.publish("flexible", "showEmployee", path);
             },
+            //se refresca la lista luego de eliminar un empleado
             refreshEmployees: function(category, nameEvent){
                  this.getView().byId("UserList").getBinding("items").refresh();
             },
+            //función que retorna al menú principal
             onPressBack: function(){
                 const oHistory = History.getInstance(),
                 sPreviousHash = oHistory.getPreviousHash();
                 const oRouter = UIComponent.getRouterFor(this);
                 oRouter.navTo("RouteMain", {}, true);
-            },
-            onReadODataIncidence: function (employeeID) {
-
-                this.getView().getModel().read("/Users", {
-                    filters: [
-                        new sap.ui.model.Filter("SapId", "EQ", this.getOwnerComponent().SapId),
-                        new sap.ui.model.Filter("EmployeeId", "EQ", employeeID.toString())
-                    ],
-                    success: function (data) {
-                        var incidenceModel = this._detailEmployeeView.getModel("incidenceModel");
-                        incidenceModel.setData(data.results);
-                        var tableIncidence = this._detailEmployeeView.byId("tableIncidence");
-                        tableIncidence.removeAllContent();
-
-                        for (var incidence in data.results) {
-
-                            data.results[incidence]._ValidateDate = true;
-                            data.results[incidence].EnabledSave = false;
-
-                            var newIncidence = sap.ui.xmlfragment("logaligroup.Employees.fragment.NewIncidence",
-                                this._detailEmployeeView.getController());
-                            this._detailEmployeeView.addDependent(newIncidence);
-                            newIncidence.bindElement("incidenceModel>/" + incidence);
-                            tableIncidence.addContent(newIncidence);
-                        }
-                    }.bind(this),
-                    error: function (e) {
-                    }
-                });
             }
         });
     });
